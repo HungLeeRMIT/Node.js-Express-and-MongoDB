@@ -2,20 +2,21 @@
   "name": "natours",
   "version": "1.0.0",
   "description": "Learn node.js express and MongoDB",
-  "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
-    "watch:js": "parcel watch ./public/js/index.js --dist-dir ./public/js",
+    "watch:js": "parcel watch public/js/index.js --dist-dir ./public/js",
     "build:js": "parcel build ./public/js/index.js --dist-dir ./public/js --entry-file-name bundle.js"
   },
   "author": "Le Tuan Hung",
+  "module": "public/js/bundle.js",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
+    "core-js": "^3.37.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-mongo-sanitize": "^2.2.0",
@@ -48,5 +49,7 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "browserslist": "> 0.25%, not dead",
+  "source": "public/js/index.js"
 }
