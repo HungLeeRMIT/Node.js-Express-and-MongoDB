@@ -7,6 +7,8 @@ const { xss } = require('express-xss-sanitizer');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const path = require('path');
+const env = require('dotenv');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
@@ -17,7 +19,11 @@ const viewRouter = require('./routes/viewRoutes');
 const app = express();
 
 app.set('view engine', 'pug');
-app.set('views', `${__dirname}/views`);
+
+// Serving static files
+env.config({ path: './config.env' });
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
 
 // Middleware
 // Set security HTTP headers
@@ -60,9 +66,6 @@ app.use(
     ],
   }),
 );
-
-// Serving static files
-app.use(express.static(`${__dirname}/public`));
 
 // Test middleware
 app.use((req, res, next) => {
